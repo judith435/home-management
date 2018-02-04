@@ -15,7 +15,7 @@ function getTasks(req, res) {
 
 function addTask(req, res) {
     console.log('>>> taskAPI: ' + req.query); // get req.body the body data of get
-    taskCtrl.addtask(req, function(err, result) {
+    taskCtrl.addTask(req, function(err, result) {
         if (err) {
             res.end('Sorry Dude! '+ err);
         }
@@ -25,4 +25,4 @@ function addTask(req, res) {
 
 
 module.exports.getTasks = getTasks;
-// module.exports.addTask = addTask;
+module.exports.addTask = addTask;

@@ -1,33 +1,31 @@
-<h1 class="extra-padding">Add Todo List</h1>
 <form id="addTask" enctype="multipart/form-data" ng-controller="addTaskCtrl">
-    <div class="form-group row">
-        <label id="cud-course-title" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-form-label text-left"></label>
-    </div>
-    <div class="row button-row">
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text-left">
-            <span class="float-md-left">
-                <button class="btn btn-primary btnSave"  ng-click="addTask()"  type="button">Save</button>
-            </span>
-        </div>
-    </div>
+    <h3>Add Todo List</h3>
     <div class="form-group row">
         <label for="courseDescription" class="col-xs-12 col-sm-2 col-md-2 col-lg-2 col-form-label text-left">Description</label>
         <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 text-left">
             <textarea  class="form-control" 
                     placeholder="Enter Task Description"
-                    ng-model=task.taskDescription maxlength="255"></textarea >
+                    ng-model=description maxlength="255"></textarea >
             <label class="validationError">{{taskDescription_errorMessage}}</label>     
         </div>
     </div>
     <div class="form-group row">
-        <label for="familyMemberDDL" class="col-xs-12 col-sm-12 col-md-1 col-lg-1 col-form-label text-left">Family Member</label>
-        <div class="col-xs-12 col-sm-12 col-md-11 col-lg-11 text-left">
-            <!-- <select id="familyMemberDDL"  class="form-control" ng-model=familyMember.content  name={{option.text}}> -->
-                    <select id="familyMemberDDL"  class="form-control">
-                            <option value={{option.value}} ng-repeat="option in options">
+        <label for="familyMemberDDL" class="col-xs-12 col-sm-2 col-md-2 col-lg-2 col-form-label text-left">Family Member</label>
+        <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 text-left">
+            <select id="familyMemberDDL"  class="form-control"  ng-model=familyMember >
+                    <option value={{option.value}} ng-repeat="option in options">
                         {{option.text}}
-                </option>
+                    </option>
             </select>
+            <label class="validationError">{{familyMember_errorMessage}}</label>     
         </div>
     </div>
+    <div class="row button-row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left">
+            <span class="float-md-left">
+                <button class="btn btn-primary"  ng-click="addTask()"  type="button">Save</button>
+            </span>
+        </div>
+    </div>
+    <h4>{{message}}</h4>
 </form>

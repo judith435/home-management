@@ -18,29 +18,25 @@ function getTasks(callback) {
 
 
 
-// function addProduct(task, callback) { 
+function addTask(task, callback) { 
 
-//     console.log('>>> productBL: ' + JSON.stringify(task));  
+    console.log('>>> taskBL: ' + JSON.stringify(task));  
 
-//     const spParms = []; 
+    const spParms = []; 
     
-//     spParms.push(new parmObject.spParm(task.productName, true));
-//     spParms.push(new parmObject.spParm(task.supplierID, false));
-//     spParms.push(new parmObject.spParm(task.categoryID, false));
-//     spParms.push(new parmObject.spParm(task.quantityPerUnit, true));
-//     spParms.push(new parmObject.spParm(task.unitPrice, false));
-//     spParms.push(new parmObject.spParm(task.discontinued, false));
+    spParms.push(new parmObject.spParm(task.description, true));
+    spParms.push(new parmObject.spParm(task.familyMember, false));
 
-//     console.log('!!! in bl  spParms: ' + JSON.stringify(spParms));
-//     dal.executeQuery('insert_product', spParms, function(err, rows) {
-//         if (err) {
-//             callback(err);
-//         }
-//         callback(null, 'task added successfully');
-//     });
-// }
+    console.log('!!! in bl  spParms: ' + JSON.stringify(spParms));
+    dal.executeQuery('insert_task', spParms, function(err, rows) {
+        if (err) {
+            callback(err);
+        }
+        callback(null, 'task added successfully');
+    });
+}
 
 module.exports.Tasks = {
-    getTasks: getTasks//,
-    // addTask: addTask
+    getTasks: getTasks,
+    addTask: addTask
 }

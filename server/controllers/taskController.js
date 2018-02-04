@@ -1,7 +1,6 @@
 var bl = require('../bl/taskBL');
 var model = require('../models/taskModel');
 
-// CRUD
 function getTasks(callback) {
 
     bl.Tasks.getTasks(function(err, taskArray) {
@@ -12,23 +11,21 @@ function getTasks(callback) {
     })
 }
 
-
-
-// function addProduct(req, callback) {
-//     console.log('>>> productContoller: ' + req.query); // get req.body the body data of get
-//     const product = new model.Product(JSON.parse(req.query.product));
+function addTask(req, callback) {
+    console.log('>>> taskController: ' + req.query); // get req.body the body data of get
+    const task = new model.Task(JSON.parse(req.query.task));
     
-//     //perform server side validations on product
+    //perform server side validations on task
 
 
-//     bl.products.addProduct(product, function(err, result) {
-//         if (err) {
-//             callback(err);
-//         }
-//         callback(null, result);
-//     })
-// }
+    bl.Tasks.addTask(task, function(err, result) {
+        if (err) {
+            callback(err);
+        }
+        callback(null, result);
+    })
+}
 
 
 module.exports.getTasks = getTasks;
-// module.exports.addTask = addTask;
+module.exports.addTask = addTask;

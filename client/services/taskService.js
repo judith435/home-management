@@ -4,12 +4,20 @@ homeManagementApp.service('taskService', function($http) {
         $http.get('http://localhost:8081/task',{}).then(success, error);
     }
 
-    this.addTask = function(prod, success, error) {
-        // $http({
-        //     url: 'http://localhost:8081/product',
-        //     method: 'POST',
-        //     params: { product: prod }
-        // }).then(success, error);
+    this.addTask = function(task, success, error) {
+        $http({
+            url: 'http://localhost:8081/task',
+            method: 'POST',
+            params: { task: task }
+        }).then(success, error);
+    }
+
+    this.deleteTask = function(task, success, error) {
+        $http({
+            url: 'http://localhost:8081/task',
+            method: 'DELETE',
+            params: { task: task }
+        }).then(success, error);
     }
 
     function error(response) {

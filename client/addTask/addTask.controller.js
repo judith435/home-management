@@ -1,45 +1,40 @@
-homeManagementApp.controller('addTaskCtrl', function addProduct($scope, taskService, familyMemberService) {
+homeManagementApp.controller('addTaskCtrl', function addTask($scope, taskService, familyMemberService) {
+
     fillFamilyMembersDDL();
+
     function fillFamilyMembersDDL() {
         familyMemberService.getFamilyMembers(function(familyMembers) {
             $scope.options = familyMembers.data[0];
         });
     }
 
-    // $scope.addTask = function()  {
-    //     $scope.errorsFound = false;
-    //     // $scope.form.fields.forEach(function(field) {
-    //     //     field.errorMessage = (!field.content)  && field.required ? field.description + ' required' : '';
-    //     //     $scope.errorsFound = field.errorMessage !== '' || $scope.errorsFound;
-    //     // });
-    //     // if ($scope.errorsFound) { return; }
-    //     // alert ('no errors found!!!');
+    $scope.addTask = function()  {
 
-    //     let index = 0;
-    //     task = {
-    //         productName: $scope.form.fields[index].content,
-    //         supplierID: $scope.form.fields[++index].content,
-    //         categoryID: $scope.form.fields[++index].content,
-    //         quantityPerUnit: $scope.form.fields[++index].content,
-    //         unitPrice: $scope.form.fields[++index].content,
-    //         discontinued: $scope.form.fields[++index].content
-    //     };
+        validateInput();
+        if ($scope.errorsFound) { return; }
 
-    //     $scope.duplicateProductErrorMessage = '';
-    //     if (!productService.checkDuplicateProduct(product))
-    //     {
-    //         $scope.errorsFound = true;
-    //         $scope.duplicateProductErrorMessage = 'product with same name, supplier and category already exists';
-    //         return;
-    //     } 
+        let index = 0;
+        var task = {
+            description: $scope.description,
+            familyMember: $scope.familyMember
+        };
 
-    //     productService.addProduct(product, function(response) {
-    //         $scope.message = (JSON.stringify(response.data));
-    //     });
-    //     $scope.errorsFound = false;
-    //     $scope.duplicateFound = false;
-    // }  
+        taskService.addTask(task, function(response) {
+            $scope.message = (JSON.stringify(response.data));
+        });
+        
+        $scope.errorsFound = false;
+    } 
+    
+    function validateInput() {
+        $scope.errorsFound = false;
 
+        $scope.taskDescription_errorMessage = !$scope.description ? 'Task Description required' : '';
+        $scope.errorsFound = $scope.taskDescription_errorMessage !== '' || $scope.errorsFound;
+
+        $scope.familyMember_errorMessage = !$scope.familyMember ? 'Please select Family Member' : '';
+        $scope.errorsFound = $scope.familyMember_errorMessage !== '' || $scope.errorsFound;
+    }    
 
 });
 
