@@ -1,0 +1,1 @@
+var homeManagementApp = angular.module('home-management-app', ['ngRoute']);

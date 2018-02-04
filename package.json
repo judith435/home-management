@@ -1,0 +1,35 @@
+{
+  "name": "home-management",
+  "version": "1.0.0",
+  "description": "angularJS-nodeJS-MySQL Task for John Bryce",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/judith435/home-management.git"
+  },
+  "keywords": [
+    "angularJS",
+    "nodeJS",
+    "MySQL",
+    "John",
+    "Bryce"
+  ],
+  "author": "Judith Ilson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/judith435/home-management/issues"
+  },
+  "homepage": "https://github.com/judith435/home-management#readme",
+  "dependencies": {
+    "angular": "^1.6.9",
+    "angular-route": "^1.6.9",
+    "body-parser": "^1.18.2",
+    "bootstrap": "^4.0.0",
+    "express": "^4.16.2",
+    "jquery": "^3.3.1",
+    "mysql": "^2.15.0"
+  }
+}

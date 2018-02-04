@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html  ng-app='home-management-app'>
+    <head>
+        <title>Show Tasks</title>
+        <script src="../jquery/dist/jquery.min.js"></script>
+        <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css">
+        <script src="../bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="../angular/angular.min.js"></script>
+        <script src="../angular-route/angular-route.min.js"></script>
+        <!-- site less file placed after bootstrap files to enable overriding of bootstrap styles --> 
+        <link rel="stylesheet/less" type="text/css" href="styles/style.less" />
+        <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js"></script>
+        <script src="app.js"></script>
+        <script src="config.js"></script>
+        <script src="taskList/taskList.controller.js"></script>  
+        <script src="addTask/addTask.controller.js"></script>  
+        <!-- <script src="productsView/productsView.controller.js"></script>  
+        <script src="suppliers/suppliers.controller.js"></script>  -->
+        <script src="services/taskService.js"></script>
+        <script src="services/familyMemberService.js"></script>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-inverse">  
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand active" href="#">Home Management</a>
+                        <a class="navbar-brand" href="#!TodoList">Todo List</a>
+                        <a class="navbar-brand" href="#!AddTodo">Add Todo</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div ng-view></div>
+    </body>
+</html>
