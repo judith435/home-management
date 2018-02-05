@@ -10,6 +10,7 @@ homeManagementApp.controller('taskListCtrl', function handleTasks($scope, taskSe
                 $scope.tasks = (familyTasks.data);
              }
              else {
+                delete $scope.tasks; //clear any tasks from before last delete
                 $scope.message = 'no tasks found for family'; 
              }
             
@@ -22,7 +23,6 @@ homeManagementApp.controller('taskListCtrl', function handleTasks($scope, taskSe
             getTasks();
             $scope.message = (JSON.stringify(response.data));
         });
-        
     } 
 
 });

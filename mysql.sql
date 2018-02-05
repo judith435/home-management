@@ -125,8 +125,13 @@ BEGIN
     
 END$$
 
+
 DELIMITER ;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+insert into family_members (name, nickname, description) values("Father","Abby","Master of the house - chaim ilson");
+insert into family_members (name, nickname, description) values("Mother","Mommy","Mistress of the house - judy ilson");
+insert into family_members (name, nickname, description) values("Son","Meir","Son of the house - meir ilson");
