@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `home_management`.`family_members` (
   `description` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
+AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -47,10 +47,26 @@ CREATE TABLE IF NOT EXISTS `home_management`.`tasks` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 5
+AUTO_INCREMENT = 32
 DEFAULT CHARACTER SET = utf8;
 
 USE `home_management` ;
+
+-- -----------------------------------------------------
+-- procedure delete_task
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `home_management`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_task`(IN taskID int)
+BEGIN
+
+   delete from  tasks where id = taskID;
+   
+      
+END$$
+
+DELIMITER ;
 
 -- -----------------------------------------------------
 -- procedure get_family_members_for_ddl
@@ -78,7 +94,7 @@ USE `home_management`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_tasks`()
 BEGIN
 
-		SELECT 	tblTasks.id,
+		SELECT 	tblTasks.id as taskID,
 				tblTasks.description,
                 DATE_FORMAT(tblTasks.create_date, '%d/%m/%Y') AS createDate,
 				tblMembers.nickname
@@ -87,6 +103,26 @@ BEGIN
 		on tblTasks.family_member = tblMembers.id
 		order by nickname, createDate, tblTasks.description;
         
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure insert_task
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `home_management`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_task`(IN description varchar(255),
+														  IN familyMember int)
+BEGIN
+   INSERT INTO `tasks`
+    (description, create_date, family_member) 
+    VALUES 
+    (description, now(), familyMember);    
+    
+   
+    
 END$$
 
 DELIMITER ;
