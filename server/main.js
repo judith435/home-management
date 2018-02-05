@@ -28,6 +28,7 @@ app.get('/', function (req, res) {
 app.get('/family/ddl', apiFamily.getFamilyDDL);
 app.get('/task', apiTask.getTasks);
 app.post('/task', apiTask.addTask);
+app.delete('/task', apiTask.deleteTask);
 
 
 // Start the server

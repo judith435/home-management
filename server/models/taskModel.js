@@ -1,5 +1,5 @@
 function Task(task) {
-    this.id = task['id'];
+    this.taskID = task['taskID'];
     this.description = task['description'];
     this.createDate = task['createDate'];
     this.nickname = task['nickname'];

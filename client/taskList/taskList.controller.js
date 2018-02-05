@@ -19,6 +19,7 @@ homeManagementApp.controller('taskListCtrl', function handleTasks($scope, taskSe
     $scope.deleteTask = function(task)  {
 
         taskService.deleteTask(task, function(response) {
+            getTasks();
             $scope.message = (JSON.stringify(response.data));
         });
         

@@ -26,6 +26,18 @@ function addTask(req, callback) {
     })
 }
 
+function deleteTask(req, callback) {
+
+    const task = new model.Task(JSON.parse(req.query.task));
+    
+    bl.Tasks.deleteTask(task, function(err, result) {
+        if (err) {
+            callback(err);
+        }
+        callback(null, result);
+    })
+}
 
 module.exports.getTasks = getTasks;
 module.exports.addTask = addTask;
+module.exports.deleteTask = deleteTask;

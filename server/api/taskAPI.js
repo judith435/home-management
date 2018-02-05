@@ -2,7 +2,6 @@ var taskCtrl = require('../controllers/taskController');
 
 
 function getTasks(req, res) {
-    //console.log(req.body); // get the body data of get
     taskCtrl.getTasks(function(err, tasks) {
         if (err) {
             res.end('Sorry Dude! '+ err);
@@ -11,10 +10,8 @@ function getTasks(req, res) {
     })
 }
 
-
-
 function addTask(req, res) {
-    console.log('>>> taskAPI: ' + req.query); // get req.body the body data of get
+    console.log('>>> taskAPI: ' + req.query);
     taskCtrl.addTask(req, function(err, result) {
         if (err) {
             res.end('Sorry Dude! '+ err);
@@ -23,6 +20,16 @@ function addTask(req, res) {
     })
 }
 
+function deleteTask(req, res) {
+    console.log('>>> taskAPI: ' + req.query); 
+    taskCtrl.deleteTask(req, function(err, result) {
+        if (err) {
+            res.end('Sorry Dude! '+ err);
+        }
+        res.end(JSON.stringify(result));
+    })
+}
 
 module.exports.getTasks = getTasks;
 module.exports.addTask = addTask;
+module.exports.deleteTask = deleteTask;

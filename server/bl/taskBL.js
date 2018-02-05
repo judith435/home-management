@@ -36,7 +36,22 @@ function addTask(task, callback) {
     });
 }
 
+function deleteTask(task, callback) { 
+    const spParms = []; 
+    
+    spParms.push(new parmObject.spParm(task.taskID, false));
+
+    console.log('$$$$$ in bl spParms: deleteTask ' + JSON.stringify(spParms));
+    dal.executeQuery('delete_task', spParms, function(err, rows) {
+        if (err) {
+            callback(err);
+        }
+        callback(null, 'task deleted successfully');
+    });
+}
+
 module.exports.Tasks = {
     getTasks: getTasks,
-    addTask: addTask
+    addTask: addTask,
+    deleteTask: deleteTask
 }
