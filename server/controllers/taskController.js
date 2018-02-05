@@ -1,5 +1,6 @@
 var bl = require('../bl/taskBL');
 var model = require('../models/taskModel');
+var validations = require('../share/validations');
 
 function getTasks(callback) {
 
@@ -14,16 +15,30 @@ function getTasks(callback) {
 function addTask(req, callback) {
     console.log('>>> taskController: ' + req.query); // get req.body the body data of get
     const task = new model.Task(JSON.parse(req.query.task));
-    
-    //perform server side validations on task
 
+    let validationErrors = '';
+    //server side validations
+    if (!validations.inputNotEmpty(task.description)) {
+        validationErrors = 'task description cannot be empty';
+    }
 
-    bl.Tasks.addTask(task, function(err, result) {
-        if (err) {
-            callback(err);
-        }
-        callback(null, result);
-    })
+    if (!validations.inputNotEmpty(task.familyMember)) {
+        validationErrors += validationErrors ? ', ' : '' ;
+        validationErrors += 'please select family member';
+    }
+
+    if (validationErrors) {
+        callback(validationErrors);
+    }
+    else ( // no validation errors
+
+        bl.Tasks.addTask(task, function(err, result) {
+            if (err) {
+                callback(err);
+            }
+            callback(null, result);
+        })
+    )
 }
 
 function deleteTask(req, callback) {
